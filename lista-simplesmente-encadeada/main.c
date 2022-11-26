@@ -8,6 +8,8 @@ int main(){
     struct aluno al2;
 
     int op;
+    int mat, result;
+
     do{
         printf("\n========== LISTA DINAMICAMENTE ENCADEADA ==============\n");
         printf("1 -> Criar lista\n");
@@ -100,12 +102,21 @@ int main(){
                 remove_lista_final(li);
                 printf("Item removido do final da lista");
                 break;
+            case 9:
+                printf("Digite a matricula que quer remover: ");
+                scanf("%d", &mat);
+                result = remove_lista_meio(li, mat);
+                if(result == 1){
+                    printf("Voce removeu a pessoa de matricula %d\n", mat);
+                }else{
+                    printf("Nao foi possivel remover\n");
+                }
             case 12:
                 libera_lista(li);
                 printf("Lista liberada!!\n");
                 break;
             case 0:
-                printf("Você saiu do programa...\n");
+                printf("Voce saiu do programa...\n");
                 break;
             default:
                 printf("ERROR! Numero nao encontrado!!! \n\n");

@@ -184,3 +184,26 @@ int remove_lista_final(Lista *li){
     
     return 1;
 }
+
+int remove_lista_meio(Lista *li, int mat){
+    if(li == NULL) return 0;
+    
+    Elem *ant, *no = *li;
+    
+    while(no->prox != NULL && no->dados.matricula != mat){
+        ant = no;
+        no = no->prox;
+    }
+
+    if(no == NULL) return 0; // Não Encontrado
+
+    if(no = *li){ // Remove o primeiro
+        *li = no->prox;
+    } else{
+        ant->prox = no->prox;
+    }
+
+    free(no);
+
+    return 1;
+}
