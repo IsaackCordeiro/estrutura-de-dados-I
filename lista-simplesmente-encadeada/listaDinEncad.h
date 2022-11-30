@@ -24,3 +24,5 @@ int insere_lista_ordenado(Lista *li, struct aluno al);
 int remove_lista_inicio(Lista *li);
 
 int remove_lista_final(Lista *li);
+
+int remove_lista_meio(Lista *li, int mat);
