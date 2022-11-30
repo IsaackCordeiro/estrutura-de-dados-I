@@ -105,7 +105,7 @@ int main(){
                 printf("Lista liberada!!\n");
                 break;
             case 0:
-                printf("Você saiu do programa...\n");
+                printf("Voce saiu do programa...\n");
                 break;
             default:
                 printf("ERROR! Numero nao encontrado!!! \n\n");
