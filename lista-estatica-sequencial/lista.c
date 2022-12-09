@@ -204,3 +204,23 @@ int consulta_lista_pos(Lista *li, int pos, struct aluno *al){
 
     return 1;
 }
+
+int imprime_lista(Lista *li){
+    if(li == NULL){
+        return 0;
+    }
+    if(lista_vazia(li)){
+        return 0;
+    }
+
+    for(int i = 0 ; i < li->qtd-1 ; i++){
+        printf("\n====== IMPRIMINDO DADOS ======\n");
+        printf("Nome: %s\n", li->dados[i].nome);
+        printf("Matricula: %d\n", li->dados[i].matricula);
+        printf("Nota da prova 1: %.2f\n", li->dados[i].nota1);
+        printf("Nota da prova 2: %.2f\n", li->dados[i].nota2);
+        printf("Nota da prova 3: %.2f\n", li->dados[i].nota3);
+    }
+
+    return 1;
+}

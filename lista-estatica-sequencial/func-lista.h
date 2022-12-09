@@ -31,3 +31,5 @@ int remove_lista_inicio(Lista *li);
 int remove_lista_meio(Lista *li, int mat);
 
 int consulta_lista_pos(Lista *li, int pos, struct aluno *al);
+
+int imprime_lista(Lista *li);

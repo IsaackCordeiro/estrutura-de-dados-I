@@ -50,19 +50,19 @@ int main(){
 
     printf("Inseriu? %d\n", res_li);
     
-    printf("Informa a posicao de consulta: ");
-    int pos, res;
-    scanf("%d", &pos);
+    // printf("Informa a posicao de consulta: ");
+    // int pos, res;
+    // scanf("%d", &pos);
 
-    res = consulta_lista_pos(li, pos, al2);
+    // res = consulta_lista_pos(li, pos, al2);
 
-    if(res == 1){
-        printf("Nome: %s\n", al2->nome);
-        printf("Matricula: %d\n", al2->matricula);
-        printf("Nota 1: %.2f\n", al2->nota1);
-    }else{
-        printf("Posicao invalida\n");
-    } 
+    // if(res == 1){
+    //     printf("Nome: %s\n", al2->nome);
+    //     printf("Matricula: %d\n", al2->matricula);
+    //     printf("Nota 1: %.2f\n", al2->nota1);
+    // }else{
+    //     printf("Posicao invalida\n");
+    // } 
 
     // Verificando o tamanho da lista
     //tamLista = tamanho_lista(li);
@@ -86,8 +86,11 @@ int main(){
     
     int resposta = lista_vazia(li);
 
+    
+
     printf("Lista vazia: %d\n", resposta);
 
+    imprime_lista(li);
 
     //Liberando lista
     libera_lista(li);
