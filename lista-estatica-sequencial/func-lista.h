@@ -32,4 +32,4 @@ int remove_lista_meio(Lista *li, int mat);
 
 int consulta_lista_pos(Lista *li, int pos, struct aluno *al);
 
-int imprime_lista(Lista *li);
+void imprime_lista(Lista *li);

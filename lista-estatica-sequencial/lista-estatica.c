@@ -19,36 +19,173 @@
 
 int main(){
     Lista *li;
-    int tamLista;
-
-    li = cria_lista();
-
-
+    int tamLista, op;
+    int mat, result;
+    int pos, resConsult;
+    
     // Criando struct al1
-    struct aluno al1, *al2;
+    struct aluno al1, al2, al3;
 
+    do{
+        printf("\n========== LISTA SEQUENCIAL ESTATICA ==============\n");
+        printf("1 -> Criar lista\n");
+        printf("2 -> Ver tamanho da lista\n");
+        printf("3 -> Verifica se a lista esta vazia\n");
+        printf("4 -> Insere no inicio da lista\n");
+        printf("5 -> Insere no fim da lista\n");
+        printf("6 -> Insere ordenado na lista\n");
+        printf("7 -> Remove no do inicio da lista\n");
+        printf("8 -> Remove no do final da lista\n");
+        printf("9 -> Remove no do meio da lista\n");
+        printf("10 -> Consultar lista em uma posicao\n");
+        printf("11 -> Imprimir lista\n");
+        printf("12 -> Libera lista\n");
+        printf("0 -> Sair do programa\n");
+        printf("==========================================================\n");
+        
+        printf("\nDigite a opcao desejada: ");
+        scanf("%d", &op);   
+
+    
+        switch (op){
+            case 1:
+                li = cria_lista();
+                printf("Lista criada!!\n");
+                break;
+            case 2:
+                printf("Tamanho da lista: %d\n", tamanho_lista(li));
+                break;
+            case 3:
+                printf("Lista esta vazia? %d\n", lista_vazia(li));
+                break;
+            case 4:
+                printf("Informe a matricula: ");
+                scanf("%d", &al1.matricula);
+
+                printf("Informe o nome: ");
+                scanf("%s", &al1.nome);
+
+                printf("Informe a nota 1: ");
+                scanf("%f", &al1.nota1);
+
+                printf("Informe a nota 2: ");
+                scanf("%f", &al1.nota2);
+
+                printf("Informe a nota 3: ");
+                scanf("%f", &al1.nota3);
+
+                insere_lista_inicio(li, al1);
+                break;
+            case 5:
+                printf("Informe a matricula: ");
+                scanf("%d", &al1.matricula);
+
+                printf("Informe o nome: ");
+                scanf("%s", &al1.nome);
+
+                printf("Informe a nota 1: ");
+                scanf("%f", &al1.nota1);
+
+                printf("Informe a nota 2: ");
+                scanf("%f", &al1.nota2);
+
+                printf("Informe a nota 3: ");
+                scanf("%f", &al1.nota3);
+
+                insere_lista_final(li, al1);            
+                break;
+            case 6:
+                printf("Informe a matricula: ");
+                scanf("%d", &al1.matricula);
+
+                printf("Informe o nome: ");
+                scanf("%s", &al1.nome);
+
+                printf("Informe a nota 1: ");
+                scanf("%f", &al1.nota1);
+
+                printf("Informe a nota 2: ");
+                scanf("%f", &al1.nota2);
+
+                printf("Informe a nota 3: ");
+                scanf("%f", &al1.nota3);
+
+                insere_lista_ordenada(li, al1);
+                break;
+            case 7:
+                remove_lista_inicio(li);
+                printf("Item removido do inicio da lista!!\n");
+                break;
+            case 8:
+                remove_lista_final(li);
+                printf("Item removido do final da lista");
+                break;
+            case 9:
+                printf("Digite a matricula que quer remover: ");
+                scanf("%d", &mat);
+                result = remove_lista_meio(li, mat);
+                if(result == 1){
+                    printf("Voce removeu a pessoa de matricula %d\n", mat);
+                }else{
+                    printf("Nao foi possivel remover\n");
+                }
+            case 10:
+                printf("Digite a posicao que quer consultar: ");
+                scanf("%d", &pos);
+                
+                resConsult = consulta_lista_pos(li, pos, &al2);
+
+                if(resConsult == 1){
+                    printf("\n====== IMPRIMINDO DADOS POSICAO %d ======\n", pos);
+                    printf("Nome: %s\n", al2.nome);
+                    printf("Matricula: %d\n", al2.matricula);
+                    printf("Nota da prova 1: %.2f\n", al2.nota1);
+                    printf("Nota da prova 2: %.2f\n", al2.nota2);
+                    printf("Nota da prova 3: %.2f\n", al2.nota3);
+                }else{
+                    printf("Posicao invalida\n");
+                }
+                break;
+            case 11:
+                imprime_lista(li);
+                break;
+            case 12:
+                libera_lista(li);
+                printf("Lista liberada!!\n");
+                break;
+            case 0:
+                printf("Voce saiu do programa...\n");
+                break;
+            default:
+                printf("ERROR! Numero nao encontrado!!! \n\n");
+                break;
+        }
+    } while (op != 0);
+    
+
+    // li = cria_lista();
 
     // Recebendo valores para al1
-    printf("Informe a matricula: ");
-    scanf("%d", &al1.matricula);
+    // printf("Informe a matricula: ");
+    // scanf("%d", &al1.matricula);
 
-    printf("Informe o nome: ");
-    scanf("%s", &al1.nome);
+    // printf("Informe o nome: ");
+    // scanf("%s", &al1.nome);
 
-    printf("Informe a nota 1: ");
-    scanf("%f", &al1.nota1);
+    // printf("Informe a nota 1: ");
+    // scanf("%f", &al1.nota1);
 
-    printf("Informe a nota 2: ");
-    scanf("%f", &al1.nota2);
+    // printf("Informe a nota 2: ");
+    // scanf("%f", &al1.nota2);
 
-    printf("Informe a nota 3: ");
-    scanf("%f", &al1.nota3);
+    // printf("Informe a nota 3: ");
+    // scanf("%f", &al1.nota3);
 
 
-    // Inserindo ordenado na lista
-    int res_li = insere_lista_ordenada(li, al1);
+    // // Inserindo ordenado na lista
+    // int res_li = insere_lista_ordenada(li, al1);
 
-    printf("Inseriu? %d\n", res_li);
+    // printf("Inseriu? %d\n", res_li);
     
     // printf("Informa a posicao de consulta: ");
     // int pos, res;
@@ -84,16 +221,16 @@ int main(){
     //     printf("Lista nao esta cheia\n");
     // }
     
-    int resposta = lista_vazia(li);
+    // int resposta = lista_vazia(li);
 
     
 
-    printf("Lista vazia: %d\n", resposta);
+    // printf("Lista vazia: %d\n", resposta);
 
-    imprime_lista(li);
+    // imprime_lista(li);
 
-    //Liberando lista
-    libera_lista(li);
+    // //Liberando lista
+    // libera_lista(li);
 
     return 0;
 }
