@@ -33,3 +33,7 @@ int remove_lista_meio(Lista *li, int mat);
 int consulta_lista_pos(Lista *li, int pos, struct aluno *al);
 
 void imprime_lista(Lista *li);
+
+int orderna_lista(Lista *li);
+
+int lista_ordenada(Lista *li, int cod);

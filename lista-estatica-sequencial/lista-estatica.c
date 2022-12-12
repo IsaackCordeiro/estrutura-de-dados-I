@@ -21,7 +21,8 @@ int main(){
     Lista *li;
     int tamLista, op;
     int mat, result;
-    int pos, resConsult;
+    int pos, resConsult, resOrdenar, resListaOrdenada;
+    int crescDec;
     
     // Criando struct al1
     struct aluno al1, al2, al3;
@@ -39,7 +40,9 @@ int main(){
         printf("9 -> Remove no do meio da lista\n");
         printf("10 -> Consultar lista em uma posicao\n");
         printf("11 -> Imprimir lista\n");
-        printf("12 -> Libera lista\n");
+        printf("12 -> Ordenar Lista\n");
+        printf("13 -> Verificar se a lista esta ordenada\n");
+        printf("14 -> Libera lista\n");
         printf("0 -> Sair do programa\n");
         printf("==========================================================\n");
         
@@ -124,11 +127,10 @@ int main(){
                 printf("Digite a matricula que quer remover: ");
                 scanf("%d", &mat);
                 result = remove_lista_meio(li, mat);
-                if(result == 1){
-                    printf("Voce removeu a pessoa de matricula %d\n", mat);
-                }else{
+                if(result != 1){
                     printf("Nao foi possivel remover\n");
                 }
+                break;
             case 10:
                 printf("Digite a posicao que quer consultar: ");
                 scanf("%d", &pos);
@@ -150,6 +152,25 @@ int main(){
                 imprime_lista(li);
                 break;
             case 12:
+                resOrdenar = orderna_lista(li);
+                
+                if(resOrdenar == 1){
+                    printf("Lista foi ordenada\n");
+                }else{
+                    printf("Nao foi possivel ordenar\n");
+                }
+                break;
+            case 13:
+                printf("Crescente(1) ou Decrescente(2) ?");
+                scanf("%d", &crescDec);
+                resListaOrdenada = lista_ordenada(li, crescDec);
+                if(resListaOrdenada == 1){
+                    printf("Lista esta ordenada!\n");
+                }else{
+                    printf("Lista nao esta ordenada\n");
+                }
+                break;
+            case 14:
                 libera_lista(li);
                 printf("Lista liberada!!\n");
                 break;
@@ -161,76 +182,6 @@ int main(){
                 break;
         }
     } while (op != 0);
-    
-
-    // li = cria_lista();
-
-    // Recebendo valores para al1
-    // printf("Informe a matricula: ");
-    // scanf("%d", &al1.matricula);
-
-    // printf("Informe o nome: ");
-    // scanf("%s", &al1.nome);
-
-    // printf("Informe a nota 1: ");
-    // scanf("%f", &al1.nota1);
-
-    // printf("Informe a nota 2: ");
-    // scanf("%f", &al1.nota2);
-
-    // printf("Informe a nota 3: ");
-    // scanf("%f", &al1.nota3);
-
-
-    // // Inserindo ordenado na lista
-    // int res_li = insere_lista_ordenada(li, al1);
-
-    // printf("Inseriu? %d\n", res_li);
-    
-    // printf("Informa a posicao de consulta: ");
-    // int pos, res;
-    // scanf("%d", &pos);
-
-    // res = consulta_lista_pos(li, pos, al2);
-
-    // if(res == 1){
-    //     printf("Nome: %s\n", al2->nome);
-    //     printf("Matricula: %d\n", al2->matricula);
-    //     printf("Nota 1: %.2f\n", al2->nota1);
-    // }else{
-    //     printf("Posicao invalida\n");
-    // } 
-
-    // Verificando o tamanho da lista
-    //tamLista = tamanho_lista(li);
-
-    //printf("Tamanho da lista: %d\n", tamLista);
-    
-    // Remove nó no inicio da lista
-    //remove_lista_inicio(li);
-
-    // Verificando o tamanho da lista apos remover
-    //tamLista = tamanho_lista(li);
-
-    //printf("Tamanho da lista apos remover: %d\n", tamLista);
-
-    //Verificando se lista está cheia
-    // if(verificaListaCheia(li)){
-    //     printf("Lista cheia\n");
-    // }else{
-    //     printf("Lista nao esta cheia\n");
-    // }
-    
-    // int resposta = lista_vazia(li);
-
-    
-
-    // printf("Lista vazia: %d\n", resposta);
-
-    // imprime_lista(li);
-
-    // //Liberando lista
-    // libera_lista(li);
 
     return 0;
 }

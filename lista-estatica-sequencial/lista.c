@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "func-lista.h"
 
 struct lista{
@@ -62,12 +63,6 @@ int lista_vazia(Lista *li){
     if(li == NULL){
         return -1;
     }
-
-    // if(li->qtd == 0){
-    //     return 1;
-    // }else{
-    //     return 0;
-    // }
 
     return (li->qtd == 0);
 }
@@ -167,6 +162,7 @@ int remove_lista_inicio(Lista *li){
     return 1;
 }
 
+// Ex 1(b)
 int remove_lista_meio(Lista *li, int mat){
     if(li == NULL){
         return 0;
@@ -182,10 +178,14 @@ int remove_lista_meio(Lista *li, int mat){
         i++;
     }
 
-    if(i == li->qtd){
+    if(i == li->qtd){ // Matricula inválida
         return 0;
     }
     
+    // Ex 1(b) - Mostrando item removido e sua posição
+    printf("Matricula do item removido: %d\n", li->dados[i].matricula);
+    printf("Posicao: %d\n", i);
+
     for(k = i ; k < li->qtd-1 ; k++){
         li->dados[k] = li->dados[k+1];
     }
@@ -205,6 +205,7 @@ int consulta_lista_pos(Lista *li, int pos, struct aluno *al){
     return 1;
 }
 
+//Ex 1(a)
 void imprime_lista(Lista *li){
     if(li == NULL){
         printf("Lista inexistente\n");
@@ -224,4 +225,70 @@ void imprime_lista(Lista *li){
         printf("Nota da prova 3: %.2f\n", li->dados[i].nota3);
         printf("\n ------------------------------------- \n");
     }
+}
+
+// Ex 1(c)
+int orderna_lista(Lista *li){
+    if(li == NULL){
+        return 0;
+    }
+    if(lista_vazia(li)){
+        return 0;
+    }
+
+    int auxMat, auxN1, auxN2, auxN3, i, j;
+    char auxNome[200];
+
+    for(j = 0 ; j < li->qtd ; j ++){
+        for(i = 0 ; i < li->qtd ; i++){
+            if(li->dados[i].matricula > li->dados[i+1].matricula && i+1 < li->qtd){
+                auxMat = li->dados[i].matricula;
+                strncpy(auxNome, li->dados[i].nome, strlen(li->dados[i].nome)+1);
+                auxN1 = li->dados[i].nota1;
+                auxN2 = li->dados[i].nota2;
+                auxN3 = li->dados[i].nota3;
+                li->dados[i].matricula = li->dados[i+1].matricula;
+                strncpy(li->dados[i].nome, li->dados[i+1].nome, strlen(li->dados[i+1].nome)+1);
+                li->dados[i].nota1 = li->dados[i+1].nota1;
+                li->dados[i].nota2 = li->dados[i+1].nota2;
+                li->dados[i].nota3 = li->dados[i+1].nota3; 
+                li->dados[i+1].matricula = auxMat;
+                strncpy(li->dados[i+1].nome, auxNome, strlen(auxNome)+1);
+                li->dados[i+1].nota1 = auxN1;
+                li->dados[i+1].nota2 = auxN2;
+                li->dados[i+1].nota3 = auxN3;
+            }
+        }
+    }
+    return 1;
+}
+
+// Ex 2
+int lista_ordenada(Lista *li, int cod){
+    if(li == NULL){
+        return -1;
+    }
+    if(lista_vazia(li)){
+        return -1;
+    }
+
+    int isSorted = 0, i, j;
+
+    if(cod == 1){
+        for(i = 0 ; i < li->qtd ; i++){
+            if(li->dados[i].matricula < li->dados[i+1].matricula && i+1 < li->qtd){
+                isSorted++;
+            }
+        }
+        return (isSorted == li->qtd-1);
+    }else if(cod == 2){
+        for(i = 0 ; i < li->qtd ; i++){
+            if(li->dados[i].matricula > li->dados[i+1].matricula && i+1 < li->qtd){
+                isSorted++;
+            }
+        }
+        return (isSorted == li->qtd-1);
+    }
+    
+    
 }
