@@ -21,7 +21,7 @@ int main(){
     Lista *li;
     int tamLista, op;
     int mat, result;
-    int pos, resConsult, resOrdenar, resListaOrdenada;
+    int pos, resConsult, resOrdenar, resListaOrdenada, resOcorrencias;
     int crescDec;
     
     // Criando struct al1
@@ -42,7 +42,8 @@ int main(){
         printf("11 -> Imprimir lista\n");
         printf("12 -> Ordenar Lista\n");
         printf("13 -> Verificar se a lista esta ordenada\n");
-        printf("14 -> Libera lista\n");
+        printf("14 -> Remover todas as ocorrencias da lista\n");
+        printf("15 -> Libera lista\n");
         printf("0 -> Sair do programa\n");
         printf("==========================================================\n");
         
@@ -171,6 +172,17 @@ int main(){
                 }
                 break;
             case 14:
+                printf("Digite a matricula que queira remover todas as ocorrencias: ");
+                scanf("%d", &mat);
+                resOcorrencias = remove_todas_ocorrencias(li, mat);
+                if (resOcorrencias == 1){
+                    printf("\nOcorrencias removidas\n");
+                }else{
+                    printf("Impossível remover\n");
+                }
+                
+                break;
+            case 15:
                 libera_lista(li);
                 printf("Lista liberada!!\n");
                 break;

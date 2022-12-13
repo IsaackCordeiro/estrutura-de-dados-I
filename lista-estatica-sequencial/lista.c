@@ -18,18 +18,19 @@ struct lista{
     5° passo: Retorna a lista
 */
 Lista* cria_lista(){
+    // Cria um ponteiro de Lista
     Lista *li;
-    li = (Lista*) malloc(sizeof(struct lista));
-    
-    if(li != NULL){
-        li->qtd = 0;
+    li = (Lista*) malloc(sizeof(struct lista)); // Aloca memória para a lista
+
+    if(li != NULL){ // Verifica se foi alocado memória corretamente
+        li->qtd = 0; // Define a quantidade de nós na lista
     }
 
     return li;
 }
 
 void libera_lista(Lista *li){
-    free(li);
+    free(li); // Libera a lista
 }
 
 
@@ -51,7 +52,7 @@ int verificaListaCheia(Lista *li){
     if(li == NULL){
         return -1;
     }
-    if(li->qtd == MAX){
+    if(li->qtd == MAX){ // Verifica se a lista está cheia
         return 1;
     }else{
         return 0;
@@ -64,7 +65,7 @@ int lista_vazia(Lista *li){
         return -1;
     }
 
-    return (li->qtd == 0);
+    return (li->qtd == 0); // Retorna se a quantidade de nós na lista é 0
 }
 
 /*
@@ -84,8 +85,8 @@ int insere_lista_final(Lista *li, struct aluno al){
     if(verificaListaCheia(li)){
         return 0;
     }
-    li->dados[li->qtd] = al;
-    li->qtd++;
+    li->dados[li->qtd] = al; // Insere nó na posição final da lista
+    li->qtd++; // Incrementa a quantidade de nós da lista
 
     return 1;
 }
@@ -98,12 +99,13 @@ int insere_lista_inicio(Lista *li, struct aluno al){
         return 0;
     }
 
+    // Passa todos os elementos da lista para uma posição a frente
     for(int i = li->qtd-1 ; i>=0 ; i--){
         li->dados[i+1] = li->dados[i];
     }   
 
-    li->dados[0] = al;
-    li->qtd++;
+    li->dados[0] = al; // Insere nó na posição inicial da lista
+    li->qtd++; // Incrementa a quantidade de nós da lista
 
     return 1;
 }
@@ -117,16 +119,18 @@ int insere_lista_ordenada(Lista *li, struct aluno al){
     }
 
     int k, i = 0;
-
+    // Pega a posição onde é preciso ser inserido o Nó
     while(i < li->qtd && li->dados[i].matricula < al.matricula){
         i++;
     }
 
+    // Percorre a lista de trás para frente até a posição onde 
+    // vai ser inserido, passando os Nós para uma posição a frente
     for(k = li->qtd-1 ; k >= i ; k--){
         li->dados[k+1] = li->dados[k];
     }
 
-    li->dados[i] = al;
+    li->dados[i] = al; // Insere Nó na posição que i armazena
     li->qtd++;
     
     return 1;
@@ -140,7 +144,7 @@ int remove_lista_final(Lista *li){
         return 0;
     }
     
-    li->qtd--;
+    li->qtd--; // Decremente a quantidade de Nós na lista
 
     return 1;
 }
@@ -153,11 +157,12 @@ int remove_lista_inicio(Lista *li){
         return 0;
     }
 
+    // Percorre toda a lista trazendo os item para uma posição antes
     for(int i = 0 ; i < li->qtd-1 ; i++){
         li->dados[i] = li->dados[i+1];
     }
 
-    li->qtd--;
+    li->qtd--; // Decrementa a quantidade de Nós da lista
 
     return 1;
 }
@@ -174,6 +179,9 @@ int remove_lista_meio(Lista *li, int mat){
 
     int k, i = 0;
 
+    // Percorre a lista até que a matricula da lista
+    // seja igual a matricula passada para a função
+    // i armazena essa posição.
     while(i < li->qtd && li->dados[i].matricula != mat){
         i++;
     }
@@ -182,15 +190,17 @@ int remove_lista_meio(Lista *li, int mat){
         return 0;
     }
     
-    // Ex 1(b) - Mostrando item removido e sua posição
+    // Ex 1(b) - Ajuste a funcao de remocao em qualquer posicao para que a mesma retorne o elemento
+    // removido e a posicão na qual o mesmo foi removido
     printf("Matricula do item removido: %d\n", li->dados[i].matricula);
     printf("Posicao: %d\n", i);
 
+    // Movendo os itens uma posição atrás a partir da posição da matricula que você quer remover
     for(k = i ; k < li->qtd-1 ; k++){
         li->dados[k] = li->dados[k+1];
     }
 
-    li->qtd--;
+    li->qtd--; // Decrementa a quantidade de Nós da lista
 
     return 1;
 }
@@ -200,12 +210,12 @@ int consulta_lista_pos(Lista *li, int pos, struct aluno *al){
         return 0;
     }
 
-    *al = li->dados[pos-1];
+    *al = li->dados[pos-1]; // *al recebe os dados da lista na posição passada como parâmetro
 
     return 1;
 }
 
-//Ex 1(a)
+//Ex 1(a):  Implemente uma funcao que imprima todos os elementos da lista.
 void imprime_lista(Lista *li){
     if(li == NULL){
         printf("Lista inexistente\n");
@@ -216,7 +226,7 @@ void imprime_lista(Lista *li){
 
     printf("\n====== IMPRIMINDO DADOS ======\n");
 
-    for(int i = 0 ; i < li->qtd ; i++){
+    for(int i = 0 ; i < li->qtd ; i++){ // Percorre a lista imprimindo os dados de cada Nó
         
         printf("\nNome: %s\n", li->dados[i].nome);
         printf("Matricula: %d\n", li->dados[i].matricula);
@@ -227,7 +237,8 @@ void imprime_lista(Lista *li){
     }
 }
 
-// Ex 1(c)
+// 1 (c) Implemente uma funcao que ordene os elementos da lista. Assuma a premissa de que os
+//       elementos foram inseridos sempre no final.
 int orderna_lista(Lista *li){
     if(li == NULL){
         return 0;
@@ -235,35 +246,24 @@ int orderna_lista(Lista *li){
     if(lista_vazia(li)){
         return 0;
     }
+    
+    struct aluno aux;
 
-    int auxMat, auxN1, auxN2, auxN3, i, j;
-    char auxNome[200];
-
-    for(j = 0 ; j < li->qtd ; j ++){
-        for(i = 0 ; i < li->qtd ; i++){
+    for(int j = 0 ; j < li->qtd ; j ++){
+        for(int i = 0 ; i < li->qtd ; i++){
             if(li->dados[i].matricula > li->dados[i+1].matricula && i+1 < li->qtd){
-                auxMat = li->dados[i].matricula;
-                strncpy(auxNome, li->dados[i].nome, strlen(li->dados[i].nome)+1);
-                auxN1 = li->dados[i].nota1;
-                auxN2 = li->dados[i].nota2;
-                auxN3 = li->dados[i].nota3;
-                li->dados[i].matricula = li->dados[i+1].matricula;
-                strncpy(li->dados[i].nome, li->dados[i+1].nome, strlen(li->dados[i+1].nome)+1);
-                li->dados[i].nota1 = li->dados[i+1].nota1;
-                li->dados[i].nota2 = li->dados[i+1].nota2;
-                li->dados[i].nota3 = li->dados[i+1].nota3; 
-                li->dados[i+1].matricula = auxMat;
-                strncpy(li->dados[i+1].nome, auxNome, strlen(auxNome)+1);
-                li->dados[i+1].nota1 = auxN1;
-                li->dados[i+1].nota2 = auxN2;
-                li->dados[i+1].nota3 = auxN3;
+                aux = li->dados[i];
+                li->dados[i] = li->dados[i+1];
+                li->dados[i+1] = aux;
             }
         }
     }
+
     return 1;
 }
 
-// Ex 2
+// 2. Considerando listas estaticas, faca um funcao em C que verifique se a lista esta ordenada.
+//    A funcao deve ainda permitir determinar o tipo de ordenacao (crescente ou decrescente).
 int lista_ordenada(Lista *li, int cod){
     if(li == NULL){
         return -1;
@@ -290,3 +290,37 @@ int lista_ordenada(Lista *li, int cod){
         return (isSorted == li->qtd-1);
     }
 }
+
+// 3. Para listas estaticas, implemente uma funcao que elimine de uma determinada lista, todas as
+//    ocorrencias de um dado elemento. Considere que a lista esta ordenada.
+
+int remove_todas_ocorrencias(Lista *li, int elem){
+    if(li == NULL){
+        return -1;
+    } else if(lista_vazia(li)){
+        return -1;
+    } else {
+        for(int i = 0 ; i < li->qtd ; i++){
+            for(int z = 0 ; z < li->qtd ; z++){
+                if(li->dados[i].matricula = elem){
+                    for(int j = i ; j < li->qtd-1 ; j++){
+                        li->dados[j] = li->dados[j+1];
+                    }
+                    li->qtd--;
+                }
+            }
+        }
+        return 1;
+    }
+}
+
+/*
+    4. Em que circunstancias seria preferıvel utilizar a implementacao estatica ao inves da dinamica
+    para listas? Cite algumas vantagens e desvantagens que podem contribuir para esta justificativa.
+
+    É melhor usar em listas pequenas e para remoção e inserção no fim da lista
+    Vantagens: as posições já são definidas com o índice i
+    Desvantagens: tamanho máximo pre-definido, inexistencia de grandes espaços sequenciais na memória,
+                  maior esforço computacional na inserção e remoção de nós 
+
+*/

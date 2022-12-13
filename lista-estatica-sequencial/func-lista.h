@@ -37,3 +37,5 @@ void imprime_lista(Lista *li);
 int orderna_lista(Lista *li);
 
 int lista_ordenada(Lista *li, int cod);
+
+int remove_todas_ocorrencias(Lista *li, int elem);
