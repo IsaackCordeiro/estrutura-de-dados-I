@@ -40,7 +40,7 @@ void libera_lista(Lista *li){
         1.2° passo: Se não existe, retorna -1
 */
 int tamanho_lista(Lista *li){
-    if(li != NULL){
+    if(li != NULL){ // LISTA EXISTE?
         return li->qtd;
     }else{
         return -1;
@@ -289,6 +289,4 @@ int lista_ordenada(Lista *li, int cod){
         }
         return (isSorted == li->qtd-1);
     }
-    
-    
 }
