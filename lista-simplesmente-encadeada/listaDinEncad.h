@@ -28,3 +28,7 @@ int remove_lista_final(Lista *li);
 int remove_lista_meio(Lista *li, int mat);
 
 int consulta_lista_pos(Lista* li, int pos, struct aluno *al);
+
+Lista* ultimo(Lista *li);
+
+int maiores(Lista* li, int n);

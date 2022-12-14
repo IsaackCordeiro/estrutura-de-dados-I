@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaDinEncad.h"
+#include "listaDinEncadDupla.h"
 
 
 int main(){
