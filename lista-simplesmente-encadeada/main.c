@@ -6,9 +6,9 @@ int main(){
     Lista *li;
 
     struct aluno al2;
-
-    int op;
-    int mat, result;
+    struct aluno dados_aluno;
+    int op, pos;
+    int mat, result, resConsultPos;
 
     do{
         printf("\n========== LISTA DINAMICAMENTE ENCADEADA ==============\n");
@@ -21,6 +21,7 @@ int main(){
         printf("7 -> Remove no do inicio da lista\n");
         printf("8 -> Remove no do final da lista\n");
         printf("9 -> Remove no do meio da lista\n");
+        printf("10 -> Consulta pela posicao da lista\n");
         printf("12 -> Libera lista\n");
         printf("0 -> Sair do programa\n");
         printf("==========================================================\n");
@@ -111,6 +112,13 @@ int main(){
                 }else{
                     printf("Nao foi possivel remover\n");
                 }
+                break;
+            case 10:
+                printf("Digite a posicao desejada: ");
+                scanf("%d", &pos);
+                resConsultPos = consulta_lista_pos(li, pos, &dados_aluno);
+                printf("Posicao encontrada? %d\n", resConsultPos);
+                break;
             case 12:
                 libera_lista(li);
                 printf("Lista liberada!!\n");
