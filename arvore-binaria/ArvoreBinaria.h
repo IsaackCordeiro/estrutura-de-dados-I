@@ -24,3 +24,5 @@ void preOrdem_ArvBin(ArvBin *raiz);
 void emOrdem_ArvBin(ArvBin *raiz);
 
 void posOrdem_ArvBin(ArvBin *raiz);
+
+ArvBin *insere_ArvBin(ArvBin *raiz, int valor);

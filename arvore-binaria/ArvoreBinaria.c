@@ -122,3 +122,50 @@ void posOrdem_ArvBin(ArvBin *raiz){
         printf("%d\n", (*raiz)->info); // Mostra o nó
     }
 }
+
+ArvBin *insere_ArvBin(ArvBin *raiz, int valor){
+    if(*raiz == NULL){
+      struct NO *novo;
+        novo = (struct NO*)malloc(sizeof(struct NO));
+
+        if(novo == NULL){
+            return 0;
+        }
+        novo->info = valor;
+        novo->esq = NULL;
+        novo->dir = NULL;
+        *raiz = novo;
+        return novo;
+    }
+    struct NO* atual = *raiz;
+
+    if (valor < atual->info){
+        atual->esq = insere_ArvBin(&(atual->esq), valor);
+    }else if(valor > atual->info){
+        atual->dir = insere_ArvBin(&(atual->dir), valor);
+    }
+
+    return atual;
+}
+
+
+int consulta_ArvBin(ArvBin *raiz, int valor){
+    if(raiz == NULL){
+        return 0;
+    }
+
+    struct NO *atual = *raiz;
+
+    while(atual != NULL){
+        if(valor == atual->info){
+            return 1;
+        }
+        if(valor > atual->info){
+            atual = atual->dir;
+        }else{
+            atual = atual->esq;
+        }
+    }
+    
+    return 0;
+}
