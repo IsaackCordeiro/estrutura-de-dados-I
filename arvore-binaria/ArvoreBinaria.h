@@ -1,3 +1,10 @@
+/*
+    Aqui está:
+    - Os protótipos das funções
+    - O tipo de dado armazenado na árvore
+    - O ponteiro "arvore"
+*/
+
 typedef struct NO* ArvBin;
 
 ArvBin* cria_ArvBin();
